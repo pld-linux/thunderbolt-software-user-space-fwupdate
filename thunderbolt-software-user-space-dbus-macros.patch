@@ -1,0 +1,44 @@
+PLD-specific: adapt to renamed dbus-c++ macros (which had too common names).
+--- thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/dbus/dbus_controller_adapter.h.orig	2017-03-12 20:34:36.412302472 +0100
++++ thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/dbus/dbus_controller_adapter.h	2017-03-12 19:15:33.792356624 +0100
+@@ -22,11 +22,11 @@
+     controller_adaptor()
+     : ::DBus::InterfaceAdaptor("com.Intel.Thunderbolt1.controller")
+     {
+-        register_method(controller_adaptor, GetControllerID, _GetControllerID_stub);
+-        register_method(controller_adaptor, IsInSafeMode, _IsInSafeMode_stub);
+-        register_method(controller_adaptor, UpdateFirmware, _UpdateFirmware_stub);
+-        register_method(controller_adaptor, GetCurrentNVMVersion, _GetCurrentNVMVersion_stub);
+-        register_method(controller_adaptor, ReadFirmware, _ReadFirmware_stub);
++        DBus_register_method(controller_adaptor, GetControllerID, _GetControllerID_stub);
++        DBus_register_method(controller_adaptor, IsInSafeMode, _IsInSafeMode_stub);
++        DBus_register_method(controller_adaptor, UpdateFirmware, _UpdateFirmware_stub);
++        DBus_register_method(controller_adaptor, GetCurrentNVMVersion, _GetCurrentNVMVersion_stub);
++        DBus_register_method(controller_adaptor, ReadFirmware, _ReadFirmware_stub);
+     }
+ 
+     // The introspection API changed from DBus-C++ library version 0.5 to 
+--- thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/dbus/dbus_controllers_adapter.h.orig	2017-01-19 15:35:27.000000000 +0100
++++ thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/dbus/dbus_controllers_adapter.h	2017-03-12 20:40:15.498965263 +0100
+@@ -21,7 +21,7 @@
+     controllers_adaptor()
+     : ::DBus::InterfaceAdaptor("com.Intel.Thunderbolt1.controllers")
+     {
+-        register_method(controllers_adaptor, GetControllerList, _GetControllerList_stub);
++        DBus_register_method(controllers_adaptor, GetControllerList, _GetControllerList_stub);
+     }
+ 
+     // The introspection API changed from DBus-C++ library version 0.5 to 
+--- thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/logind_manager_proxy.h.orig	2017-01-19 15:35:27.000000000 +0100
++++ thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/include/logind_manager_proxy.h	2017-03-12 21:00:03.842285033 +0100
+@@ -45,8 +45,8 @@
+         _shutdown_cb(shutdown_cb),
+         _sleep_cb(sleep_cb)
+    {
+-      connect_signal(LogindManagerProxy, PrepareForShutdown, PrepareForShutdownCb);
+-      connect_signal(LogindManagerProxy, PrepareForSleep, PrepareForSleepCb);
++      DBus_connect_signal(LogindManagerProxy, PrepareForShutdown, PrepareForShutdownCb);
++      DBus_connect_signal(LogindManagerProxy, PrepareForSleep, PrepareForSleepCb);
+    };
+ 
+ private:

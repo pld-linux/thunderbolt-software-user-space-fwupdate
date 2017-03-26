@@ -1,0 +1,10 @@
+--- thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/CMakeLists.txt.orig	2017-01-19 15:35:27.000000000 +0100
++++ thunderbolt-software-user-space-2017.01.19/ThunderboltService/Linux/CMakeLists.txt	2017-03-13 21:21:13.041284010 +0100
+@@ -163,7 +163,6 @@
+     install(FILES ${CONFIG_DIR}/thunderbolt.conf DESTINATION ${DBUS_CONFIG_DIR} COMPONENT config)
+     install(FILES ${CONFIG_DIR}/10-thunderbolt.rules DESTINATION ${UDEV_RULES_DIR} COMPONENT config)
+     install(TARGETS thunderboltd DESTINATION ${DAEMON_INSTALL_DIR} COMPONENT binary)
+-    install(SCRIPT post_install_script.cmake COMPONENT script)
+ else()
+     message(WARNING
+             "Can't install Thunderbolt daemon because systemd or dbus couldn't be found")
