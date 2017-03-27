@@ -14,7 +14,7 @@ Name:		thunderbolt-software-user-space
 #   - tbtfwucli 0.0.2 release 16.2.59
 Version:	0
 %define	subver	2017.01.19
-Release:	0.%{subver}.1
+Release:	0.%{subver}.2
 License:	BSD
 Group:		Libraries
 # primary repository is https://github.com/01org/thunderbolt-software-user-space, but release exists only in dell repository
@@ -31,6 +31,9 @@ BuildRequires:	dbus-c++-devel >= 0.5.0
 BuildRequires:	libnl-devel >= 1:3.2
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# hardcoded in ThunderboltService/Linux/{CMakeLists.txt,config/*.service}
+%define		_libexecdir	/usr/lib
 
 %description
 Thunderbolt(TM) Linux Software.
