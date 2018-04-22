@@ -4,7 +4,9 @@
 #
 Summary:	Thunderbolt(TM) Linux Software
 Summary(pl.UTF-8):	Oprogramowanie linuksowe do technologii Thunderbolt(TM)
-Name:		thunderbolt-software-user-space
+# it's fwupdate branch of thunderbolt-software-user-space repository
+# (master branch packaged in thunderbolt-software-user-space.spec)
+Name:		thunderbolt-software-user-space-fwupdate
 # use "0" until versioning is stabilized:
 # - github/dell release is tagged by date
 # - changelog says it's 16.2.59 release
@@ -14,17 +16,18 @@ Name:		thunderbolt-software-user-space
 #   - tbtfwucli 0.0.2 release 16.2.59
 Version:	0
 %define	subver	2017.01.19
-Release:	0.%{subver}.2
+%define	rel	3
+Release:	0.%{subver}.%{rel}
 License:	BSD
 Group:		Libraries
-# primary repository is https://github.com/01org/thunderbolt-software-user-space, but release exists only in dell repository
+# primary repository is https://github.com/01org/thunderbolt-software-user-space, but fwupdate branch release exists only in dell repository
 #Source0Download: https://github.com/dell/thunderbolt-software-user-space/releases
-Source0:	https://github.com/dell/thunderbolt-software-user-space/archive/%{subver}/%{name}-%{subver}.tar.gz
+Source0:	https://github.com/dell/thunderbolt-software-user-space/archive/%{subver}/thunderbolt-software-user-space-%{subver}.tar.gz
 # Source0-md5:	2876232d622eb83df0f8ec392826ab55
-Patch0:		%{name}-glibc.patch
-Patch1:		%{name}-dbus-macros.patch
-Patch2:		%{name}-install.patch
-Patch3:		%{name}-link.patch
+Patch0:		thunderbolt-software-user-space-glibc.patch
+Patch1:		thunderbolt-software-user-space-dbus-macros.patch
+Patch2:		thunderbolt-software-user-space-install.patch
+Patch3:		thunderbolt-software-user-space-link.patch
 URL:		https://01.org/thunderbolt-sw/
 BuildRequires:	cmake >= 2.8.8
 BuildRequires:	dbus-c++-devel >= 0.5.0
@@ -138,7 +141,7 @@ kontrolerem oraz zapis nowego pliku obrazu FW do pamięci flash
 kontrolera.
 
 %prep
-%setup -q -n %{name}-%{subver}
+%setup -q -n thunderbolt-software-user-space-%{subver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
